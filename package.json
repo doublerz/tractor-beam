@@ -1,0 +1,18 @@
+{
+    "name": "Doubler",
+    "private": true,
+    "dependencies": {
+        "debug": "0.7.4",
+        "fastclick": "0.6.11"
+    },
+    "devDependencies": {
+        "browserify": "3.30.1",
+        "browserify-file": "0.0.0",
+        "envify": "3.0.0",
+        "stylus": "0.42.2",
+        "nodemon": "1.0.15",
+        "cordova": "3.5.0-0.2.4",
+        "xml2json": "0.4.0",
+        "ripple-emulator": "courseoff/ripple-emulator"
+    }
+}

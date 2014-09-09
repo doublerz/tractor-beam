@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.github.warp.doubler" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Doubler</name>
+    <description>
+         Telepresence Robot (Video and Motion Control)
+    </description>
+    <author email="ben.tillman@gmail.com" href="http://github.com/warp/doubler">
+        Ben Tillman
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <preference name="Fullscreen" value="true" />
+</widget>
