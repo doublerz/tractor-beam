@@ -14,5 +14,9 @@
         "cordova": "3.5.0-0.2.4",
         "xml2json": "0.4.0",
         "ripple-emulator": "courseoff/ripple-emulator"
+    },
+    "scripts": {
+        "build": "cordova build android",
+        "deploy": "adb -s $DEVICE install -r platforms/android/ant-build/Doubler-debug.apk"
     }
 }

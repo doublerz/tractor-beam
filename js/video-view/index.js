@@ -59,6 +59,13 @@ VideoView.prototype.ready = function() {
     alert(err.message);
   });
 
+  setTimeout(function () {
+    document.getElementById('forward').addEventListener('click', function () {
+      console.log('forward');
+      arduino.setSpeeds(255, 255);
+    });
+  }, 1000);
+
   navigator.getUserMedia({audio: true, video: true}, function(stream) {
     window.localStream = stream;
   }, function() {});

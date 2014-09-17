@@ -1,8 +1,16 @@
 var firmata = cordova.plugins.firmata,
-    DIR_L = 5,
-    PWM_L = 6,
-    DIR_R = 3,
-    PWM_R = 4;
+    DIR_R = 2,
+    PWM_R = 3,
+    DIR_L = 4,
+    PWM_L = 5;
+
+var success = function (message) {
+  return console.log.bind(console, message);
+};
+
+var error = function (message) {
+  console.error(message);
+};
 
 function Arduino () {
   if (!(this instanceof Arduino)) {
@@ -21,11 +29,12 @@ Arduino.prototype.setSpeed = function(dir, pwm, speed) {
     speed = 255;
   }
   firmata.connect(function () {
-    firmata.pinMode(dir, firmata.MODES.OUTPUT);
-    firmata.pinMode(pwm, firmata.MODES.OUTPUT);
-    firmata.digitalWrite(dir, reverse ? firmata.HIGH : firmata.LOW);
-    firmata.analogWrite(pwm, speed);
-  });
+    console.log('connect');
+    firmata.pinMode(dir, firmata.OUTPUT, success('pinMode:' + dir), error);
+    firmata.pinMode(pwm, firmata.OUTPUT, success('pinMode:' + pwm), error);
+    firmata.digitalWrite(dir, reverse ? firmata.HIGH : firmata.LOW, success('digitalWrite:' + dir), error);
+    firmata.analogWrite(pwm, speed, success('analogWrite:' + pwm), error);
+  }, error);
 };
 
 Arduino.prototype.setLeftSpeed = function(speed) {
