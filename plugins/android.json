@@ -1,0 +1,26 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "res/xml/config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"Firmata\"><param name=\"android-package\" value=\"com.github.warp.cordova.firmata.Firmata\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "com.github.warp.cordova-firmata": {
+            "PACKAGE_NAME": "com.trineo.doubler"
+        }
+    },
+    "dependent_plugins": {}
+}
