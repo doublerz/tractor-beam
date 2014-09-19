@@ -16,7 +16,6 @@ ant-build/
 ant-gen/
 
 # generated files
-bin/
 gen/
 www/index.css
 www/index.js
