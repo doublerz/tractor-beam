@@ -42,7 +42,6 @@ profile
 IOS/www/
 
 # NPM
-platforms
 node_modules
 
 # OSX
