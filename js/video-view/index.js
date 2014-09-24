@@ -1,6 +1,7 @@
 var debug = require('debug')('app:video-view');
 
-var tmpl = require('./index.html');
+var fs = require("fs");
+var tmpl = fs.readFileSync(__dirname + "/index.html", "utf-8");
 
 function VideoView() {
   if (!(this instanceof VideoView)) {
@@ -17,7 +18,7 @@ VideoView.prototype.ready = function() {
     navigator.webkitGetUserMedia ||
     navigator.mozGetUserMedia;
 
-  var peer = new Peer({key: process.env.PEERJS_KEY, debug: 3}),
+  var peer = new Peer('robot', {key: process.env.PEERJS_KEY, debug: 3}),
       arduino = require('../lib/arduino')(),
       watchdog = null,
       watchdogTime = 500; // ms

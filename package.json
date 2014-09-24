@@ -1,22 +1,25 @@
 {
-    "name": "Doubler",
-    "private": true,
-    "dependencies": {
-        "debug": "0.7.4",
-        "fastclick": "0.6.11"
-    },
-    "devDependencies": {
-        "browserify": "3.30.1",
-        "browserify-file": "0.0.0",
-        "envify": "3.0.0",
-        "stylus": "0.42.2",
-        "nodemon": "1.0.15",
-        "cordova": "3.5.0-0.2.4",
-        "xml2json": "0.4.0",
-        "ripple-emulator": "courseoff/ripple-emulator"
-    },
-    "scripts": {
-        "build": "cordova build android",
-        "deploy": "adb -s $DEVICE install -r platforms/android/ant-build/Doubler-debug.apk"
-    }
+  "name": "Doubler",
+  "private": true,
+  "dependencies": {
+    "brfs": "^1.2.0",
+    "debug": "0.7.4",
+    "fastclick": "0.6.11",
+    "transform-loader": "^0.2.1"
+  },
+  "devDependencies": {
+    "cordova": "3.5.0-0.2.4",
+    "dotenv": "^0.4.0",
+    "envify": "^3.0.0",
+    "nodemon": "1.0.15",
+    "ripple-emulator": "courseoff/ripple-emulator",
+    "stylus": "0.42.2",
+    "webpack": "^1.4.2",
+    "webpack-dev-server": "^1.6.5",
+    "xml2json": "0.4.0"
+  },
+  "scripts": {
+    "build": "cordova build android",
+    "deploy": "adb -s $DEVICE install -r platforms/android/ant-build/Doubler-debug.apk"
+  }
 }
