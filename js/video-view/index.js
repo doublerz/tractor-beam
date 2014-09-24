@@ -45,13 +45,7 @@ VideoView.prototype.ready = function() {
 
   peer.on('connection', function(connection) {
     connection.on('data', function(data) {
-      if (watchdog) {
-        clearTimeout(watchdog);
-      }
       arduino.setSpeeds(data[0], data[1]);
-      watchdog = setTimeout(function () {
-        arduino.setSpeeds(0, 0);
-      }, watchdogTime);
     })
   });
 

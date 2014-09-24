@@ -16,7 +16,12 @@ function Arduino () {
   if (!(this instanceof Arduino)) {
     return new Arduino();
   }
-  var self = this;
+  firmata.connect(function(){
+    console.log('connected')
+  }, function error(){
+    console.error('unable to connect', arguments)
+  }
+  );
 };
 
 Arduino.prototype.setSpeed = function(dir, pwm, speed) {
@@ -28,13 +33,12 @@ Arduino.prototype.setSpeed = function(dir, pwm, speed) {
   if (speed > 255) {
     speed = 255;
   }
-  firmata.connect(function () {
-    console.log('connect');
-    firmata.pinMode(dir, firmata.OUTPUT, success('pinMode:' + dir), error);
-    firmata.pinMode(pwm, firmata.OUTPUT, success('pinMode:' + pwm), error);
-    firmata.digitalWrite(dir, reverse ? firmata.HIGH : firmata.LOW, success('digitalWrite:' + dir), error);
-    firmata.analogWrite(pwm, speed, success('analogWrite:' + pwm), error);
-  }, error);
+  // firmata.connect(function () {
+    // console.log('connect');
+  firmata.pinMode(dir, firmata.OUTPUT, success('pinMode:' + dir), error);
+  firmata.pinMode(pwm, firmata.OUTPUT, success('pinMode:' + pwm), error);
+  firmata.digitalWrite(dir, reverse ? firmata.HIGH : firmata.LOW, success('digitalWrite:' + dir), error);
+  firmata.analogWrite(pwm, speed, success('analogWrite:' + pwm), error);
 };
 
 Arduino.prototype.setLeftSpeed = function(speed) {
@@ -48,6 +52,16 @@ Arduino.prototype.setRightSpeed = function(speed) {
 Arduino.prototype.setSpeeds = function(leftSpeed, rightSpeed) {
   this.setLeftSpeed(leftSpeed);
   this.setRightSpeed(rightSpeed);
+
+  if(this._safetyTimeout){
+    clearTimeout(this._safetyTimeout);
+    this._safetyTimeout = null
+  }
+  this._safetyTimeout = setTimeout(function(){
+    this._safetyTimeout = null;
+    this.setLeftSpeed(0);
+    this.setRightSpeed(0);
+  }.bind(this), 500);
 };
 
 module.exports = Arduino;
