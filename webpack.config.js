@@ -20,6 +20,9 @@ module.exports = {
       test: /\.js$/,
       loader: "transform?envify"
       }
+    ],
+    noParse: [
+      /fastclick/
     ]
   }
 };
