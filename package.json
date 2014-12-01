@@ -19,8 +19,11 @@
     "xml2json": "0.4.0"
   },
   "scripts": {
+    "devwatch": "webpack --watch",
+    "ripple-emulate": "ripple emulate",
     "bundle": "webpack",
-    "build": "cordova build android",
+    "build": "webpack && cordova build android",
+    "build-release": "webpack && cordova build android --release",
     "deploy": "adb -s $DEVICE install -r platforms/android/ant-build/Doubler-debug.apk"
   }
 }
