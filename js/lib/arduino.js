@@ -25,13 +25,16 @@ function Arduino () {
 };
 
 Arduino.prototype.setSpeed = function(dir, pwm, speed) {
-  var reverse = 0;
+  var reverse = false;
   if (speed < 0) {
     speed = -speed;
-    reverse = 1;
+    reverse = true;
   }
   if (speed > 255) {
     speed = 255;
+  }
+  if (reverse) {
+    speed = 255 - speed
   }
   // firmata.connect(function () {
     // console.log('connect');
