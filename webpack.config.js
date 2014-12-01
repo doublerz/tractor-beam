@@ -17,8 +17,8 @@ module.exports = {
         loader: "transform?brfs"
       },
       {
-      test: /\.js$/,
-      loader: "transform?envify"
+        test: /\.js$/,
+        loader: "transform?envify"
       }
     ],
     noParse: [
