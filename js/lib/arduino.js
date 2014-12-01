@@ -36,8 +36,6 @@ Arduino.prototype.setSpeed = function(dir, pwm, speed) {
   if (reverse) {
     speed = 255 - speed
   }
-  // firmata.connect(function () {
-    // console.log('connect');
   firmata.pinMode(dir, firmata.OUTPUT, success('pinMode:' + dir), error);
   firmata.pinMode(pwm, firmata.OUTPUT, success('pinMode:' + pwm), error);
   firmata.digitalWrite(dir, reverse ? firmata.HIGH : firmata.LOW, success('digitalWrite:' + dir), error);
