@@ -1,6 +1,7 @@
 var debug = require('debug')('app:video-view');
 
-var tmpl = require('./index.html');
+var fs = require("fs");
+var tmpl = fs.readFileSync(__dirname + "/index.html", "utf-8");
 
 function VideoView() {
   if (!(this instanceof VideoView)) {
@@ -12,12 +13,15 @@ function VideoView() {
   self.el.innerHTML = tmpl;
 };
 
-VideoView.prototype.ready = function() {
-  navigator.getUserMedia = navigator.getUserMedia ||
-    navigator.webkitGetUserMedia ||
-    navigator.mozGetUserMedia;
+VideoView.prototype.connect = function(){
+  if (this._connectionAttempt === undefined) {
+    this._connectionAttempt = 0;
+  } else if(this._connectionAttempt > 10) {
+    return;
+  }
+  this._connectionAttempt += 1;
 
-  var peer = new Peer({key: process.env.PEERJS_KEY, debug: 3}),
+  window.peer = this._peer = new Peer('robot' + this._connectionAttempt, {key: process.env.PEERJS_KEY, debug: 3}),
       arduino = require('../lib/arduino')(),
       watchdog = null,
       watchdogTime = 500; // ms
@@ -45,19 +49,22 @@ VideoView.prototype.ready = function() {
 
   peer.on('connection', function(connection) {
     connection.on('data', function(data) {
-      if (watchdog) {
-        clearTimeout(watchdog);
-      }
       arduino.setSpeeds(data[0], data[1]);
-      watchdog = setTimeout(function () {
-        arduino.setSpeeds(0, 0);
-      }, watchdogTime);
     })
   });
 
   peer.on('error', function(err){
-    alert(err.message);
-  });
+    this.connect()
+  }.bind(this));
+
+}
+
+VideoView.prototype.ready = function() {
+  navigator.getUserMedia = navigator.getUserMedia ||
+    navigator.webkitGetUserMedia ||
+    navigator.mozGetUserMedia;
+
+  this.connect();
 
   setTimeout(function () {
     document.getElementById('forward').addEventListener('click', function () {
