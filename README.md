@@ -3,7 +3,11 @@
 The best project ever.
 
 ## Getting Started
-_(Coming soon)_
+```
+npm install
+npm run devwatch
+npm run ripple-emulate
+```
 
 ## Documentation
 _(Coming soon)_
