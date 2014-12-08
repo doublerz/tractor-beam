@@ -14,14 +14,8 @@ function VideoView() {
 };
 
 VideoView.prototype.connect = function(){
-  if (this._connectionAttempt === undefined) {
-    this._connectionAttempt = 0;
-  } else if(this._connectionAttempt > 10) {
-    return;
-  }
-  this._connectionAttempt += 1;
 
-  window.peer = this._peer = new Peer('robot' + this._connectionAttempt, {key: process.env.PEERJS_KEY, debug: 3}),
+  window.peer = this._peer = new Peer('robot1', {key: process.env.PEERJS_KEY, debug: 3}),
       arduino = require('../lib/arduino')(),
       watchdog = null,
       watchdogTime = 500; // ms
@@ -57,7 +51,19 @@ VideoView.prototype.connect = function(){
     this.connect()
   }.bind(this));
 
-}
+};
+
+VideoView.prototype.disconnect = function() {
+  if (this._peer) {
+    this._peer.disconnect();
+  }
+};
+
+VideoView.prototype.reconnect = function() {
+  if (this._peer) {
+    this._peer.reconnect();
+  }
+};
 
 VideoView.prototype.ready = function() {
   navigator.getUserMedia = navigator.getUserMedia ||
@@ -66,7 +72,7 @@ VideoView.prototype.ready = function() {
 
   this.connect();
 
-  setTimeout(function () {
+  setTimeout(function() {
     document.getElementById('forward').addEventListener('click', function () {
       console.log('forward');
       arduino.setSpeeds(255, 255);
@@ -78,6 +84,14 @@ VideoView.prototype.ready = function() {
   }, function(err) {
     console.error(JSON.stringify(err));
   });
+};
+
+VideoView.prototype.pause = function() {
+  this.disconnect();
+};
+
+VideoView.prototype.resume = function() {
+  this.reconnect();
 };
 
 module.exports = VideoView;

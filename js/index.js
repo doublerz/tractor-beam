@@ -12,11 +12,6 @@ var view = VideoView();
 var container = document.querySelector('.app');
 container.appendChild(view.el);
 
-// Bind any events that are required on startup. Common events are:
-// 'load', 'deviceready', 'offline', and 'online'.
-document.addEventListener('deviceready', deviceReady, false);
-
-function deviceReady(ev) {
-    debug('device ready');
-    view.ready();
-};
+document.addEventListener('deviceready', view.ready.bind(view), false);
+document.addEventListener('pause', view.pause.bind(view), false);
+document.addEventListener('resume', view.resume.bind(view), false);
