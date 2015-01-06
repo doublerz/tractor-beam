@@ -45,6 +45,7 @@ IOS/www/
 
 # NPM
 node_modules
+npm-debug.log
 
 # OSX
 .DS_Store
