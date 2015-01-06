@@ -3,11 +3,17 @@
 The best project ever.
 
 ## Getting Started
-```
-npm install
-npm run devwatch
-npm run ripple-emulate
-```
+
+1. clone
+2. `npm install`
+3. `npm run devwatch` to compile the javascript
+4. `npm run ripple-emulate` to make the app available in the browser
+
+# Deploying to device
+
+1. Make sure you have gone through getting started
+2. `npm run build`
+3. `DEVICE=[mydeviceid] npm run deploy`
 
 ## Documentation
 _(Coming soon)_
