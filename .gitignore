@@ -14,7 +14,8 @@
 *.class
 
 # generated files - android project subfolder
-android/assets/
+platforms/android/assets/www/
+platforms/android/bin/
 ant-build/
 ant-gen/
 
