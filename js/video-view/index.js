@@ -75,7 +75,9 @@ VideoView.prototype.ready = function() {
 
   navigator.getUserMedia({audio: true, video: true}, function(stream) {
     window.localStream = stream;
-  }, function() {});
+  }, function(err) {
+    console.error(JSON.stringify(err));
+  });
 };
 
 module.exports = VideoView;

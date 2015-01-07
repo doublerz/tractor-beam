@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "brfs": "^1.2.0",
+    "cordova": "^4.1.2",
     "debug": "0.7.4",
     "fastclick": "0.6.11",
     "transform-loader": "^0.2.1"

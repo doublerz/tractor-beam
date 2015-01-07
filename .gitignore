@@ -14,7 +14,8 @@
 *.class
 
 # generated files - android project subfolder
-android/assets/
+platforms/android/assets/www/
+platforms/android/bin/
 ant-build/
 ant-gen/
 
@@ -45,6 +46,7 @@ IOS/www/
 
 # NPM
 node_modules
+npm-debug.log
 
 # OSX
 .DS_Store
