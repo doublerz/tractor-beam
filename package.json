@@ -4,20 +4,20 @@
   "dependencies": {
     "brfs": "^1.2.0",
     "cordova": "^4.1.2",
-    "debug": "0.7.4",
-    "fastclick": "0.6.11",
+    "debug": "2.1.1",
+    "fastclick": "1.0.3",
     "transform-loader": "^0.2.1"
   },
   "devDependencies": {
-    "cordova": "3.5.0-0.2.4",
+    "cordova": "4.1.2",
     "dotenv": "^0.4.0",
-    "envify": "^3.0.0",
-    "nodemon": "1.0.15",
+    "envify": "^3.2.0",
+    "nodemon": "1.2.1",
     "ripple-emulator": "courseoff/ripple-emulator",
-    "stylus": "0.42.2",
-    "webpack": "^1.4.2",
-    "webpack-dev-server": "^1.6.5",
-    "xml2json": "0.4.0"
+    "stylus": "0.49.3",
+    "webpack": "^1.4.15",
+    "webpack-dev-server": "^1.7.0",
+    "xml2json": "0.5.1"
   },
   "scripts": {
     "devwatch": "webpack --watch",
