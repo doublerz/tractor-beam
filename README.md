@@ -1,4 +1,4 @@
-# doubler [![Build Status](https://secure.travis-ci.org/warp/doubler.png?branch=master)](http://travis-ci.org/warp/doubler)
+# Tractor Beam
 
 The best project ever.
 
