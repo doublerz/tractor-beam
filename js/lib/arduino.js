@@ -1,68 +1,68 @@
-var firmata = cordova.plugins.firmata,
-    DIR_R = 7,
-    PWM_R = 9,
-    DIR_L = 8,
-    PWM_L = 10;
+var firmata = cordova.plugins.firmata
+var DIR_R = 7
+var PWM_R = 9
+var DIR_L = 8
+var PWM_L = 10
 
 var success = function (message) {
-  return console.log.bind(console, message);
-};
+  return console.log.bind(console, message)
+}
 
 var error = function (message) {
-  console.error(message);
-};
+  console.error(message)
+}
 
 function Arduino () {
   if (!(this instanceof Arduino)) {
-    return new Arduino();
+    return new Arduino()
   }
-  firmata.connect(function(){
+  firmata.connect(function () {
     console.log('connected')
-  }, function error(){
+  }, function error () {
     console.error('unable to connect', arguments)
   }
-  );
-};
+  )
+}
 
-Arduino.prototype.setSpeed = function(dir, pwm, speed) {
-  var reverse = false;
+Arduino.prototype.setSpeed = function (dir, pwm, speed) {
+  var reverse = false
   if (speed < 0) {
-    speed = -speed;
-    reverse = true;
+    speed = -speed
+    reverse = true
   }
   if (speed > 255) {
-    speed = 255;
+    speed = 255
   }
   if (reverse) {
     speed = 255 - speed
   }
-  firmata.pinMode(dir, firmata.OUTPUT, success('pinMode:' + dir), error);
-  firmata.pinMode(pwm, firmata.OUTPUT, success('pinMode:' + pwm), error);
-  firmata.digitalWrite(dir, reverse ? firmata.HIGH : firmata.LOW, success('digitalWrite:' + dir), error);
-  firmata.analogWrite(pwm, speed, success('analogWrite:' + pwm), error);
-};
+  firmata.pinMode(dir, firmata.OUTPUT, success('pinMode:' + dir), error)
+  firmata.pinMode(pwm, firmata.OUTPUT, success('pinMode:' + pwm), error)
+  firmata.digitalWrite(dir, reverse ? firmata.HIGH : firmata.LOW, success('digitalWrite:' + dir), error)
+  firmata.analogWrite(pwm, speed, success('analogWrite:' + pwm), error)
+}
 
-Arduino.prototype.setLeftSpeed = function(speed) {
-  this.setSpeed(DIR_L, PWM_L, speed);
-};
+Arduino.prototype.setLeftSpeed = function (speed) {
+  this.setSpeed(DIR_L, PWM_L, speed)
+}
 
-Arduino.prototype.setRightSpeed = function(speed) {
-  this.setSpeed(DIR_R, PWM_R, speed);
-};
+Arduino.prototype.setRightSpeed = function (speed) {
+  this.setSpeed(DIR_R, PWM_R, speed)
+}
 
-Arduino.prototype.setSpeeds = function(leftSpeed, rightSpeed) {
-  this.setLeftSpeed(leftSpeed);
-  this.setRightSpeed(rightSpeed);
+Arduino.prototype.setSpeeds = function (leftSpeed, rightSpeed) {
+  this.setLeftSpeed(leftSpeed)
+  this.setRightSpeed(rightSpeed)
 
-  if(this._safetyTimeout){
-    clearTimeout(this._safetyTimeout);
+  if (this._safetyTimeout) {
+    clearTimeout(this._safetyTimeout)
     this._safetyTimeout = null
   }
-  this._safetyTimeout = setTimeout(function(){
-    this._safetyTimeout = null;
-    this.setLeftSpeed(0);
-    this.setRightSpeed(0);
-  }.bind(this), 500);
-};
+  this._safetyTimeout = setTimeout(function () {
+    this._safetyTimeout = null
+    this.setLeftSpeed(0)
+    this.setRightSpeed(0)
+  }.bind(this), 500)
+}
 
-module.exports = Arduino;
+module.exports = Arduino
