@@ -15,9 +15,8 @@
 
 # generated files - android project subfolder
 platforms/android/assets/www/
+platforms/android/build/
 platforms/android/bin/
-ant-build/
-ant-gen/
 
 # generated files
 gen/
