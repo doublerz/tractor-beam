@@ -5,9 +5,11 @@
     "brfs": "^1.2.0",
     "debug": "2.1.1",
     "fastclick": "1.0.3",
+    "peerjs": "^0.3.14",
     "transform-loader": "^0.2.1"
   },
   "devDependencies": {
+    "cordova": "^5.3.3",
     "dotenv": "^0.4.0",
     "envify": "^3.2.0",
     "nodemon": "1.2.1",
@@ -23,6 +25,6 @@
     "bundle": "webpack",
     "build": "webpack && cordova build android",
     "build-release": "webpack && cordova build android --release",
-    "deploy": "adb -s $DEVICE install -r platforms/android/ant-build/Doubler-debug.apk"
+    "deploy": "adb -s $DEVICE install -r platforms/android/build/outputs/apk/android-debug.apk"
   }
 }

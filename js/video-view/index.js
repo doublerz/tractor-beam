@@ -1,4 +1,5 @@
 var debug = require('debug')('app:video-view');
+var Peer = require('peerjs')
 
 var fs = require("fs");
 var tmpl = fs.readFileSync(__dirname + "/index.html", "utf-8");

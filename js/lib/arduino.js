@@ -1,8 +1,8 @@
 var firmata = cordova.plugins.firmata,
-    DIR_R = 2,
-    PWM_R = 3,
-    DIR_L = 4,
-    PWM_L = 5;
+    DIR_R = 7,
+    PWM_R = 9,
+    DIR_L = 8,
+    PWM_L = 10;
 
 var success = function (message) {
   return console.log.bind(console, message);
