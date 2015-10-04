@@ -1,0 +1,10 @@
+{
+    "com.github.warp.cordova-firmata": {
+        "source": {
+            "type": "local",
+            "path": "../cordova-firmata"
+        },
+        "is_top_level": true,
+        "variables": {}
+    }
+}

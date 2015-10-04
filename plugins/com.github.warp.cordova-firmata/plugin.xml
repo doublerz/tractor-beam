@@ -1,8 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <plugin id="com.github.warp.cordova-firmata" version="0.1.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>Firmata</name>
+    <asset src="www/firmata.js" target="firmata.js" />
     <js-module name="Firmata" src="www/firmata.js">
-        <clobbers target="cordova.plugins.firmata" />
+        <clobbers target="firmata" />
     </js-module>
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">

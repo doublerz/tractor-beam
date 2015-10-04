@@ -1,13 +1,11 @@
+'use strict'
+
 require('fastclick')
 
-// require the video view so we can instantiate it
-var VideoView = require('./video-view')
+const VideoView = require('./video-view')
+const view = new VideoView()
 
-// make a view
-var view = VideoView()
-
-// add it to the page
-var container = document.querySelector('.app')
+const container = document.querySelector('.app')
 container.appendChild(view.el)
 
 document.addEventListener('deviceready', view.ready.bind(view), false)
