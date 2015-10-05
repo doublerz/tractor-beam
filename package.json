@@ -3,7 +3,6 @@
   "private": true,
   "dependencies": {
     "brfs": "^1.2.0",
-    "debug": "2.1.1",
     "fastclick": "1.0.3",
     "peerjs": "^0.3.14",
     "transform-loader": "^0.2.1"
@@ -13,7 +12,7 @@
     "dotenv": "^0.4.0",
     "envify": "^3.2.0",
     "nodemon": "1.2.1",
-    "ripple-emulator": "^0.9.24",
+    "ripple-emulator": "^0.9.32",
     "standard": "^5.3.1",
     "stylus": "0.49.3",
     "webpack": "^1.4.15",
@@ -30,7 +29,13 @@
     "deploy": "adb -s $DEVICE install -r platforms/android/build/outputs/apk/android-debug.apk"
   },
   "standard": {
-    "ignore": ["platforms", "plugins"],
-    "globals": ["cordova", "firmata"]
+    "ignore": [
+      "platforms",
+      "plugins"
+    ],
+    "globals": [
+      "cordova",
+      "firmata"
+    ]
   }
 }

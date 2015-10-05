@@ -1,0 +1,22 @@
+{
+  "name": "cordova-firmata",
+  "version": "1.0.0",
+  "description": "Cordova Plugin to provide firmata over USB'",
+  "main": "www/firmata.js",
+  "scripts": {
+    "test": "format"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doublerz/cordova-firmata.git"
+  },
+  "author": "ben.tillman@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/doublerz/cordova-firmata/issues"
+  },
+  "homepage": "https://github.com/doublerz/cordova-firmata#readme",
+  "devDependencies": {
+    "standard": "^5.3.1"
+  }
+}
