@@ -23,7 +23,7 @@
   "scripts": {
     "test": "standard",
     "devwatch": "webpack --watch",
-    "ripple-emulate": "ripple emulate",
+    "emulate": "ripple emulate",
     "bundle": "webpack",
     "build": "webpack && cordova build android",
     "build-release": "webpack && cordova build android --release",
@@ -31,6 +31,6 @@
   },
   "standard": {
     "ignore": ["platforms", "plugins"],
-    "globals": ["cordova"]
+    "globals": ["cordova", "firmata"]
   }
 }

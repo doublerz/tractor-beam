@@ -18,6 +18,7 @@ platforms/android/assets/www/
 platforms/android/build/
 platforms/android/bin/
 platforms/android/CordovaLib/build/
+platforms/android/.gradle/
 
 # generated files
 gen/
