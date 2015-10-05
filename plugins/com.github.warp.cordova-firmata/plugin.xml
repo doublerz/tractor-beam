@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <plugin id="com.github.warp.cordova-firmata" version="0.1.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>Firmata</name>
-    <asset src="www/firmata.js" target="firmata.js" />
     <js-module name="Firmata" src="www/firmata.js">
         <clobbers target="firmata" />
     </js-module>
@@ -13,5 +12,15 @@
         </config-file>
         <config-file parent="/*" target="AndroidManifest.xml"></config-file>
         <source-file src="src/android/Firmata.java" target-dir="src/com/github/warp/cordova-firmata/Firmata" />
+    </platform>
+    <platform name="browser">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Firmata">
+                <param name="browser-package" value="Firmata" />
+            </feature>
+        </config-file>
+        <js-module src="src/browser/FirmataProxy.js" name="FirmataProxy">
+            <runs />
+        </js-module>
     </platform>
 </plugin>

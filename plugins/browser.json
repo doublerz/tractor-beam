@@ -5,11 +5,11 @@
     },
     "config_munge": {
         "files": {
-            "res/xml/config.xml": {
+            "config.xml": {
                 "parents": {
                     "/*": [
                         {
-                            "xml": "<feature name=\"Firmata\"><param name=\"android-package\" value=\"com.github.warp.cordova.firmata.Firmata\" /></feature>",
+                            "xml": "<feature name=\"Firmata\"><param name=\"browser-package\" value=\"Firmata\" /></feature>",
                             "count": 1
                         }
                     ]

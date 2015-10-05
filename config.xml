@@ -10,4 +10,5 @@
     <content src="index.html" />
     <access origin="*" />
     <preference name="Fullscreen" value="true" />
+    <plugin name="com.github.warp.cordova-firmata" spec="../cordova-firmata" />
 </widget>

@@ -81,16 +81,6 @@ public class Firmata extends CordovaPlugin {
 
     private void getBoardVersion(final CallbackContext callbackContext) {
         String version = arduino.getBoardVersion();
-        while (version.equals("0.0")) {
-            arduino.write((byte)0xF9);
-            try{
-                Thread.sleep(1000);
-            }
-            catch(InterruptedException e){
-                callbackContext.error(e.getMessage());
-            }
-            version = arduino.getBoardVersion();
-        }
         callbackContext.success(version);
     }
 
