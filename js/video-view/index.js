@@ -13,65 +13,63 @@ class VideoView {
   }
 
   connect () {
-    window.peer = this._peer = new Peer('robot1', { key: process.env.PEERJS_KEY, debug: 3 })
+    this.peer = new Peer('robot1', { key: process.env.PEERJS_KEY, debug: 3 })
 
-    this._peer.on('open', function () {
-      document.getElementById('my-id').innerHTML = this._peer.id
+    this.peer.on('open', () => {
+      document.getElementById('my-id').innerHTML = this.peer.id
     })
 
-    this._peer.on('call', function (call) {
-      call.answer(window.localStream)
+    this.peer.on('call', (call) => {
+      call.answer(this.localStream)
 
       // Hang up on an existing call if present
-      if (window.existingCall) window.existingCall.close()
+      if (this.call) this.call.close()
 
       // Wait for stream on the call, then set peer video display
-      call.on('stream', function (stream) {
+      call.on('stream', (stream) => {
         document.getElementById('their-video')
           .setAttribute('src', window.URL.createObjectURL(stream))
       })
 
-      window.existingCall = call
+      this.call = call
     })
 
-    this._peer.on('connection', function (connection) {
-      connection.on('data', function (data) {
+    this.peer.on('connection', (connection) => {
+      connection.on('data', (data) => {
         this.arduino.setSpeeds(data[0], data[1])
       })
     })
 
-    this._peer.on('error', function () {
-      this.connect()
-    }.bind(this))
+    this.peer.on('error', this.connect.bind(this))
   }
 
   disconnect () {
-    if (this._peer) this._peer.disconnect()
+    if (this.peer) this.peer.disconnect()
   }
 
   reconnect () {
-    if (this._peer) this._peer.reconnect()
+    if (this.peer) this.peer.reconnect()
   }
 
   ready () {
-    navigator.getUserMedia = navigator.getUserMedia ||
-      navigator.webkitGetUserMedia ||
-      navigator.mozGetUserMedia
-
     this.arduino = new Arduino()
 
     this.connect()
 
-    setTimeout(function () {
-      document.getElementById('forward').addEventListener('click', function () {
+    setTimeout(() => {
+      document.getElementById('forward').addEventListener('click', () => {
         console.log('forward')
         this.arduino.setSpeeds(255, 255)
       })
     }, 1000)
 
-    navigator.getUserMedia({audio: true, video: true}, function (stream) {
-      window.localStream = stream
-    }, function (err) {
+    if (!navigator.getUserMedia) {
+      navigator.getUserMedia = navigator.webkitGetUserMedia
+    }
+
+    navigator.getUserMedia({ audio: true, video: true }, (stream) => {
+      this.localStream = stream
+    }, (err) => {
       console.error(JSON.stringify(err))
     })
   }
