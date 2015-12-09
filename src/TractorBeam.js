@@ -13,8 +13,8 @@ function error (message) {
   console.error(message)
 }
 
-class Arduino {
-  constructor () {
+module.exports = class TractorBeam {
+  connect () {
     firmata.connect(function () {
       console.log('connected')
     }, function error () {
@@ -63,5 +63,3 @@ class Arduino {
     }.bind(this), 500)
   }
 }
-
-module.exports = Arduino
