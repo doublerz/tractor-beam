@@ -1,0 +1,45 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"Firmata\"><param name=\"browser-package\" value=\"Firmata\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "com.github.warp.cordova-firmata": {
+            "PACKAGE_NAME": "com.github.warp.doubler"
+        }
+    },
+    "dependent_plugins": {},
+    "modules": [
+        {
+            "file": "plugins/com.github.warp.cordova-firmata/www/firmata.js",
+            "id": "com.github.warp.cordova-firmata.Firmata",
+            "pluginId": "com.github.warp.cordova-firmata",
+            "clobbers": [
+                "firmata"
+            ]
+        },
+        {
+            "file": "plugins/com.github.warp.cordova-firmata/src/browser/FirmataProxy.js",
+            "id": "com.github.warp.cordova-firmata.FirmataProxy",
+            "pluginId": "com.github.warp.cordova-firmata",
+            "runs": true
+        }
+    ],
+    "plugin_metadata": {
+        "com.github.warp.cordova-firmata": "0.1.0"
+    }
+}
