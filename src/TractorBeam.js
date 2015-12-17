@@ -1,12 +1,13 @@
 'use strict'
 
+// Tractor Beam / Zumo
 const DIR_R = 7
-const PWM_R = 9
 const DIR_L = 8
+const PWM_R = 9
 const PWM_L = 10
 
 function success (message) {
-  return console.log.bind(console, message)
+  console.log(message)
 }
 
 function error (message) {
@@ -17,27 +18,20 @@ module.exports = class TractorBeam {
   connect () {
     firmata.connect(function () {
       console.log('connected')
-    }, function error () {
-      console.error('unable to connect', arguments)
-    })
+    }, error)
   }
 
   setSpeed (dir, pwm, speed) {
-    var reverse = false
+    const FORWARD = firmata.LOW
+    const REVERSE = firmata.HIGH
+
+    let direction = FORWARD
     if (speed < 0) {
-      speed = -speed
-      reverse = true
+      speed = 255 + speed
+      direction = REVERSE
     }
-    if (speed > 255) {
-      speed = 255
-    }
-    if (reverse) {
-      speed = 255 - speed
-    }
-    firmata.pinMode(dir, firmata.OUTPUT, success('pinMode:' + dir), error)
-    firmata.pinMode(pwm, firmata.OUTPUT, success('pinMode:' + pwm), error)
-    firmata.digitalWrite(dir, reverse ? firmata.HIGH : firmata.LOW, success('digitalWrite:' + dir), error)
-    firmata.analogWrite(pwm, speed, success('analogWrite:' + pwm), error)
+    firmata.digitalWrite(dir, direction, success, error)
+    firmata.analogWrite(pwm, speed, success, error)
   }
 
   setLeftSpeed (speed) {
@@ -48,9 +42,9 @@ module.exports = class TractorBeam {
     this.setSpeed(DIR_R, PWM_R, speed)
   }
 
-  setSpeeds (leftSpeed, rightSpeed) {
-    this.setLeftSpeed(leftSpeed)
-    this.setRightSpeed(rightSpeed)
+  setSpeeds (speeds) {
+    this.setLeftSpeed(speeds[0])
+    this.setRightSpeed(speeds[1])
 
     if (this._safetyTimeout) {
       clearTimeout(this._safetyTimeout)
