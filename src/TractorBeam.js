@@ -1,5 +1,7 @@
 'use strict'
 
+const TIMEOUT = 500 // ms
+
 // Tractor Beam / Zumo
 const DIR_R = 7
 const DIR_L = 8
@@ -46,14 +48,10 @@ module.exports = class TractorBeam {
     this.setLeftSpeed(speeds[0])
     this.setRightSpeed(speeds[1])
 
-    if (this._safetyTimeout) {
-      clearTimeout(this._safetyTimeout)
-      this._safetyTimeout = null
-    }
+    if (this._safetyTimeout) clearTimeout(this._safetyTimeout)
     this._safetyTimeout = setTimeout(function () {
-      this._safetyTimeout = null
       this.setLeftSpeed(0)
       this.setRightSpeed(0)
-    }.bind(this), 500)
+    }.bind(this), TIMEOUT)
   }
 }
